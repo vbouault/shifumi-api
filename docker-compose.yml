@@ -7,14 +7,14 @@ services:
       - "3308:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=customer_api_database_test
+      - MYSQL_DATABASE=shi-fu-mi-db_test
   db:
     image: 'mysql:5.7'
     ports:
       - "3307:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=customer_api_database
+      - MYSQL_DATABASE=shi-fu-mi-db
     volumes: 
       - customers-db:/var/lib/mysql
   web:
@@ -24,7 +24,7 @@ services:
     environment:
       - DB_USER=root
       - DB_PASS=root
-      - DB_NAME=customer_api_database
+      - DB_NAME=shi-fu-mi-db
       - DB_HOST=db
       - DB_PORT=3306
     ports:
