@@ -6,9 +6,6 @@ const extractToken = require('./middlewares/extractToken');
 const app = express();
 const PORT = process.env.PORT || (process.env.NODE_ENV === 'test' ? 3001 : 3000);
 
-app.use(express.json());
-app.use(cors());
-
 process.on('unhandledRejection', error => {
   console.error('unhandledRejection', JSON.stringify(error), error.stack);
   process.exit(1);
@@ -23,6 +20,8 @@ process.on('beforeExit', () => {
   });
 });
 
+app.use(express.json());
+app.use(cors());
 app.use(extractToken);
 app.use('/users', require('./routes/user.routes.js'));
 app.use('/auth', require('./routes/auth.routes.js'));
@@ -42,6 +41,5 @@ app.set('x-powered-by', false);
 const server = app.listen(PORT, () => {
   console.log('Server is running on port ' + PORT);
 });
-
 
 module.exports = server;

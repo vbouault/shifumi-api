@@ -10,7 +10,7 @@ const getTokenFromHeader = (req) => {
 module.exports = expressJWT({
   secret: JWT_PRIVATE_KEY,
   requestProperty: 'token',
-  algorithms : [ 'HS256' ],
+  algorithms: ['HS256'],
   getToken: getTokenFromHeader,
   credentialsRequired: false
 });
