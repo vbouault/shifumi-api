@@ -24,6 +24,18 @@ class GamesController {
       });
     }
   }
+
+  static async updateById (req, res) {
+    try {
+      const data = await Games.updateById(req.params.id, req.body.idUser2)
+      res.status(200).send(data)
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send({
+        errorMessage: err.message || 'Some error occurred'
+      });
+    }
+  }
 }
 
 module.exports = GamesController;

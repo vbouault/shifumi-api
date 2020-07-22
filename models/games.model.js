@@ -18,6 +18,13 @@ class Games {
   static async findNotStarted () {
     return db.query('SELECT g.id, g.id_user1, g.id_user2, u.name FROM games g JOIN users u ON u.id = g.id_user1 WHERE g.id_user2 IS NULL')
   }
+
+  static async updateById (id, idUser2) {
+    return db.query(
+      'UPDATE games SET id_user2 = ? WHERE id = ?',
+      [idUser2, id]
+    ).then(() => this.findOne(id));
+  }
 }
 
 module.exports = Games;
