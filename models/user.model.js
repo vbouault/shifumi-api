@@ -3,7 +3,7 @@ const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
 const Joi = require('@hapi/joi');
 
-// const JWT_PRIVATE_KEY = process.env.JWT_PRIVATE_KEY;
+const JWT_PRIVATE_KEY = process.env.JWT_PRIVATE_KEY;
 
 class User {
   static validateInfos (attributes) {

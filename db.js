@@ -54,6 +54,6 @@ class Database {
       TRUNCATE customers;
     `);
   }
-}
+}  
 
 module.exports = (new Database()).init();

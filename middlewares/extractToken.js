@@ -14,3 +14,4 @@ module.exports = expressJWT({
   getToken: getTokenFromHeader,
   credentialsRequired: false
 });
+  

@@ -45,4 +45,4 @@ class usersController {
   }
 }
 
-module.exports = usersController;
+module.exports = usersController;  

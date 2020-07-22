@@ -16,4 +16,4 @@
     "database": {"ENV": "DB_NAME_TEST"},
     "port": {"ENV": "DB_PORT_TEST"}
   }
-}
+} 

@@ -23,6 +23,7 @@ process.on('beforeExit', () => {
 app.use(express.json());
 app.use(cors());
 app.use(extractToken);
+app.use('/games', require('./routes/games.routes.js'))
 app.use('/users', require('./routes/user.routes.js'));
 app.use('/auth', require('./routes/auth.routes.js'));
 
