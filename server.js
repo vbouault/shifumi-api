@@ -50,13 +50,34 @@ io.on('connect', async (socket) => {
   socket.emit('GameList', games);
   socket.on('newGame', async (id_user1) => {
     const newGame = await Games.create(id_user1)
-    console.log('new game: ', newGame)
     io.emit('reloadGames', newGame);
   })
   socket.on('updateGame', async (data) => {
     const game = await Games.updateById(data.id, data.id_user2);
     io.emit('reloadGamesUpdate', game);
   })
+  socket.on('dataGame', async (id) => {
+    const dataGame = await Games.findOneTwoUsers(id);
+    socket.join(id);
+    io.in(id).emit('reloadDataGame', dataGame)
+  })
+  socket.on('object', async (data) => {
+    // console.log(data)
+    let newData;
+    if(data.pointUser1){
+      newData = await Games.updateScore({id: data.id, pointUser1: data.pointUser1 })
+    } else if (data.pointUser2) {
+      newData = await Games.updateScore({id: data.id, pointUser2: data.pointUser2})
+    }
+    if(data.pointUser1){
+      data = {...data, pointUser1 : newData.point_user1}
+    } else if (data.pointUser2) {
+      data = {...data, pointUser2 : newData.point_user2}
+    }
+    console.log(data)
+    io.in(data.id).emit('reloadObject', data)
+  })
+
 });
 
 module.exports = server;
