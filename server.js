@@ -64,17 +64,16 @@ io.on('connect', async (socket) => {
   socket.on('object', async (data) => {
     // console.log(data)
     let newData;
-    if(data.pointUser1){
-      newData = await Games.updateScore({id: data.id, pointUser1: data.pointUser1 })
+    if (data.pointUser1) {
+      newData = await Games.updateScore({ id: data.id, pointUser1: data.pointUser1 })
     } else if (data.pointUser2) {
-      newData = await Games.updateScore({id: data.id, pointUser2: data.pointUser2})
+      newData = await Games.updateScore({ id: data.id, pointUser2: data.pointUser2 })
     }
-    if(data.pointUser1){
-      data = {...data, pointUser1 : newData.point_user1}
+    if (data.pointUser1) { 
+      data = { ...data, pointUser1 : newData.point_user1 }
     } else if (data.pointUser2) {
-      data = {...data, pointUser2 : newData.point_user2}
+      data = { ...data, pointUser2 : newData.point_user2 }
     }
-    console.log(data)
     io.in(data.id).emit('reloadObject', data)
   })
 
